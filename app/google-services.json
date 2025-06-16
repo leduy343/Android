@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "147696889382",
+    "firebase_url": "https://tlunavigator-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "tlunavigator",
+    "storage_bucket": "tlunavigator.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:147696889382:android:e7899ef0525651534180e7",
+        "android_client_info": {
+          "package_name": "com.example.tlunavigator"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1PI15NOVBOye12KU6vSt6zfysW_OufCs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

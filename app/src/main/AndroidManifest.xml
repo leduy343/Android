@@ -13,19 +13,19 @@
         android:theme="@style/Theme.TluNavigator"
         tools:targetApi="31">
         <activity
-            android:name=".User_Dashboard"
+            android:name=".User_DashboardActivity"
             android:exported="false" />
         <activity
-            android:name=".Admin_Dashboard"
+            android:name=".AdminMainActivity"
             android:exported="false" />
         <activity
-            android:name=".Register"
+            android:name=".RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".UserMainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
