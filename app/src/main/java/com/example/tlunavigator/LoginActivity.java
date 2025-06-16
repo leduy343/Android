@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -22,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private TextView txtRegister;
     private EditText etEmail, etPassword;
     private Button btnLogin;
     private FirebaseAuth mAuth;
@@ -37,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
+        txtRegister = findViewById(R.id.txtRegistor);
         etEmail = findViewById(R.id.etLoginEmail);
         etPassword = findViewById(R.id.etLoginPassword);
         btnLogin = findViewById(R.id.btnLogin);
@@ -45,6 +48,10 @@ public class LoginActivity extends AppCompatActivity {
         dbRef = FirebaseDatabase.getInstance().getReference("Users");
 
         btnLogin.setOnClickListener(v -> loginUser());
+        txtRegister.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void loginUser() {
