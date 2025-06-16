@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private TextView txtRegister;
+    private TextView txtRegister, txtForgotPass;
     private EditText etEmail, etPassword;
     private Button btnLogin;
     private FirebaseAuth mAuth;
@@ -39,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
+        txtForgotPass = findViewById(R.id.txtForgotpass);
         txtRegister = findViewById(R.id.txtRegistor);
         etEmail = findViewById(R.id.etLoginEmail);
         etPassword = findViewById(R.id.etLoginPassword);
@@ -50,6 +51,10 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(v -> loginUser());
         txtRegister.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
+        });
+        txtForgotPass.setOnClickListener(v->{
+            Intent intent = new Intent(LoginActivity.this,ForgotPasswordActivity.class);
             startActivity(intent);
         });
     }
