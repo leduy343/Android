@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
-    private EditText etEmail, etPassword, etConfirm;
+    private EditText etEmail, etPassword, etConfirm,etName;
     private Button btnRegister;
     private FirebaseAuth mAuth;
     private DatabaseReference dbRef;
@@ -34,6 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
             return insets;
         });
 
+        etName = findViewById(R.id.etName);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         etConfirm = findViewById(R.id.etConfirmPassword);
@@ -45,11 +46,12 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(v -> registerUser());
     }
     private void registerUser() {
+        String name = etName.getText().toString();
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
         String confirm = etConfirm.getText().toString().trim();
 
-        if (email.isEmpty() || password.isEmpty() || confirm.isEmpty()) {
+        if (name.isEmpty()||email.isEmpty() || password.isEmpty() || confirm.isEmpty()) {
             Toast.makeText(this, "Điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -66,6 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         // Tạo user object
                         Map<String, String> user = new HashMap<>();
+                        user.put("name",name);
                         user.put("email", email);
                         user.put("role", "user");
 
