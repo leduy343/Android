@@ -24,9 +24,15 @@ public class AdminMainActivity extends AppCompatActivity {
             return insets;
         });
         btnManageUsers = findViewById(R.id.btnManageUsers);
+        btnManageSubjects = findViewById(R.id.btnManageSubjects);
         btnManageUsers.setOnClickListener(v -> {
             Intent intent = new Intent(AdminMainActivity.this, ManageUsersActivity.class);
             startActivity(intent);
+        });
+
+        btnManageSubjects.setOnClickListener(v ->{
+                Intent intent = new Intent(AdminMainActivity.this,ManageSubjectsActivity.class);
+                startActivity(intent);
         });
     }
 }
