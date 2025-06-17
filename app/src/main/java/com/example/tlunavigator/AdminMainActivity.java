@@ -3,6 +3,7 @@ package com.example.tlunavigator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class AdminMainActivity extends AppCompatActivity {
 
-    private Button btnManageUsers, btnManageSubjects, btnManageDocuments;
+    private ImageButton btnManageUsers, btnManageSubjects, btnManageDocuments;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
