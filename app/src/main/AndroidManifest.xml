@@ -13,6 +13,21 @@
         android:theme="@style/Theme.TluNavigator"
         tools:targetApi="31">
         <activity
+            android:name=".ChuongTrinhActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MonHocActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NguoiDungActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TaiNguyenActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ThongKeActivity"
+            android:exported="false" />
+        <activity
             android:name=".User_Dashboard"
             android:exported="false" />
         <activity
