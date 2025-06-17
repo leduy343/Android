@@ -2,6 +2,8 @@ package com.example.tlunavigator;
 
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -26,6 +28,7 @@ import java.util.List;
 
 public class ManageUsersActivity extends AppCompatActivity {
     private ListView listViewUsers;
+    private ImageButton btnback;
     private ArrayAdapter<String> adapter;
     private List<String> userList = new ArrayList<>();
     private DatabaseReference usersRef;
@@ -39,41 +42,16 @@ public class ManageUsersActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        btnback =findViewById(R.id.btnBack);
         listViewUsers = findViewById(R.id.listViewUsers);
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, userList);
         listViewUsers.setAdapter(adapter);
 
-        usersRef = FirebaseDatabase.getInstance().getReference("users");
+        usersRef = FirebaseDatabase.getInstance().getReference("Users");
 
-        checkIsAdminAndLoadUsers();
-    }
+        loadUsers();
 
-    private void checkIsAdminAndLoadUsers() {
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (currentUser == null) {
-            Toast.makeText(this, "Chưa đăng nhập", Toast.LENGTH_SHORT).show();
-            finish();
-            return;
-        }
-
-        String uid = currentUser.getUid();
-        usersRef.child(uid).child("role").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String role = snapshot.getValue(String.class);
-                if ("admin".equals(role)) {
-                    loadUsers();
-                } else {
-                    Toast.makeText(ManageUsersActivity.this, "Bạn không phải admin", Toast.LENGTH_SHORT).show();
-                    finish();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(ManageUsersActivity.this, "Lỗi truy cập DB", Toast.LENGTH_SHORT).show();
-            }
-        });
+        btnback.setOnClickListener(v -> finish() );
     }
 
     private void loadUsers() {
