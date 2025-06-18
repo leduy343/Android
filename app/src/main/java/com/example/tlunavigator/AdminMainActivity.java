@@ -13,7 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class AdminMainActivity extends AppCompatActivity {
 
-    private ImageButton btnManageUsers, btnManageSubjects, btnManageDocuments;
+    private ImageButton btnManageUsers, btnManageSubjects, btnManageDocuments, btnProgram;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,8 +24,13 @@ public class AdminMainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        btnProgram = findViewById(R.id.btnChuongTrinh);
         btnManageUsers = findViewById(R.id.btnManageUsers);
         btnManageSubjects = findViewById(R.id.btnManageSubjects);
+        btnProgram.setOnClickListener( v-> {
+            Intent intent =new Intent(AdminMainActivity.this,ManageTrainingProgramActivity.class);
+            startActivity(intent);
+        });
         btnManageUsers.setOnClickListener(v -> {
             Intent intent = new Intent(AdminMainActivity.this, ManageUsersActivity.class);
             startActivity(intent);
