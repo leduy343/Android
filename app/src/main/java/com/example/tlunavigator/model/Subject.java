@@ -1,5 +1,6 @@
 package com.example.tlunavigator.model;
 
+
 public class Subject {
 
     public String id;

@@ -6,16 +6,16 @@ import java.util.Map;
 public class TrainingProgram {
     public String id;
     public String programName;
-    public String description;
+    public String code;
     public int credit;
-    public Map<String, Boolean> subjects;
+    public Map<String, String> subjects;
 
     public TrainingProgram() {}
 
-    public TrainingProgram(String id, String programName,int credit ,String description) {
+    public TrainingProgram(String id, String programName,int credit ,String code) {
         this.id = id;
         this.programName = programName;
-        this.description = description;
+        this.code = code;
         this.credit = credit;
         this.subjects = new HashMap<>();
     }}
