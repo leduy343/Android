@@ -2,6 +2,7 @@ package com.example.tlunavigator;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.tlunavigator.model.Document;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -39,9 +41,18 @@ public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.Docume
     @Override
     public void onBindViewHolder(@NonNull DocumentViewHolder holder, int position) {
         Document document = documentList.get(position);
-        holder.tvSubjectName.setText("Tên tài liệu: " + document.subjectName);
-        holder.tvDocumentName.setText("Mã: " + document.documentName);
-        holder.tvType.setText("Số tín: " + document.type);
+        holder.tvSubjectName.setText("Môn: " + document.subjectName);
+        holder.tvDocumentName.setText("Tài liệu: " + document.documentName);
+        holder.tvType.setText("Loại: " + document.type);
+        holder.tvDocument.setOnClickListener(v -> {
+            holder.tvDocument.setOnClickListener(view -> {
+                Intent intent = new Intent(context, UploadFileActivity.class);
+                context.startActivity(intent);
+
+
+        });
+
+        });
 
         holder.btnEdit.setOnClickListener(v -> showEditDialog(document));
         holder.btnDelete.setOnClickListener(v -> deleteDocument(document));
@@ -53,7 +64,7 @@ public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.Docume
     }
 
     public static class DocumentViewHolder extends RecyclerView.ViewHolder {
-        TextView tvSubjectName, tvDocumentName, tvType;
+        TextView tvSubjectName, tvDocumentName, tvType, tvDocument;
         ImageButton btnEdit, btnDelete;
 
         public DocumentViewHolder(@NonNull View itemView) {
@@ -61,6 +72,7 @@ public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.Docume
             tvSubjectName = itemView.findViewById(R.id.tvSubjectName);
             tvDocumentName = itemView.findViewById(R.id.tvDocumentName);
             tvType = itemView.findViewById(R.id.tvType);
+            tvDocument = itemView.findViewById(R.id.tvDocument);
             btnEdit = itemView.findViewById(R.id.btnEdit);
             btnDelete = itemView.findViewById(R.id.btnDelete);
         }
@@ -79,17 +91,18 @@ public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.Docume
         etDocumentName.setText(document.documentName);
         etType.setText(document.type);
 
-
         builder.setTitle("Chỉnh sửa tài liệu")
                 .setPositiveButton("Lưu", (dialog, which) -> {
-                    String newSubjectName = etSubjectsName.getText().toString();
-                    String newDocumentName = etDocumentName.getText().toString();
+                    String newSubject = etSubjectsName.getText().toString();
+                    String newName = etDocumentName.getText().toString();
                     String newType = etType.getText().toString();
 
-                    Document updated = new Document(document.id, newSubjectName, newDocumentName, newType);
+                    Document updated = new Document(document.id, newSubject, newName, newType);
                     dbRef.child(document.id).setValue(updated)
-                            .addOnSuccessListener(aVoid -> Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_SHORT).show())
-                            .addOnFailureListener(e -> Toast.makeText(context, "Lỗi cập nhật", Toast.LENGTH_SHORT).show());
+                            .addOnSuccessListener(aVoid ->
+                                    Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_SHORT).show())
+                            .addOnFailureListener(e ->
+                                    Toast.makeText(context, "Lỗi cập nhật", Toast.LENGTH_SHORT).show());
                 })
                 .setNegativeButton("Hủy", null)
                 .show();
@@ -101,8 +114,10 @@ public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.Docume
                 .setMessage("Bạn có chắc muốn xóa tài liệu này?")
                 .setPositiveButton("Xóa", (dialog, which) -> {
                     dbRef.child(document.id).removeValue()
-                            .addOnSuccessListener(aVoid -> Toast.makeText(context, "Đã xóa", Toast.LENGTH_SHORT).show())
-                            .addOnFailureListener(e -> Toast.makeText(context, "Lỗi xóa", Toast.LENGTH_SHORT).show());
+                            .addOnSuccessListener(aVoid ->
+                                    Toast.makeText(context, "Đã xóa", Toast.LENGTH_SHORT).show())
+                            .addOnFailureListener(e ->
+                                    Toast.makeText(context, "Lỗi xóa", Toast.LENGTH_SHORT).show());
                 })
                 .setNegativeButton("Hủy", null)
                 .show();

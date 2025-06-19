@@ -5,24 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tlunavigator.model.Document;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,14 +28,7 @@ public class ManageDocumentsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_manage_documents);
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
         recyclerView = findViewById(R.id.recyclerDocument);
         btnAdd = findViewById(R.id.btnAddDocument);
@@ -61,11 +44,40 @@ public class ManageDocumentsActivity extends AppCompatActivity {
 
         btnAdd.setOnClickListener(v -> showAddDialog());
     }
+    private void showAddDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_add_document, null);
+        builder.setView(view);
+
+        EditText etSubjectsName = view.findViewById(R.id.etSubjectsName);
+        EditText etDocumentName = view.findViewById(R.id.etDocumentName);
+        EditText etType = view.findViewById(R.id.etType);
+
+        builder.setTitle("Thêm tài liệu mới")
+                .setPositiveButton("Thêm", (dialog, which) -> {
+                    String subject = etSubjectsName.getText().toString().trim();
+                    String name = etDocumentName.getText().toString().trim();
+                    String type = etType.getText().toString().trim();
+
+                    if (subject.isEmpty() || name.isEmpty() || type.isEmpty()) {
+                        Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    String id = documentsRef.push().getKey(); // tạo ID tự động
+                    Document document = new Document(id, subject, name, type);
+                    documentsRef.child(id).setValue(document)
+                            .addOnSuccessListener(aVoid -> Toast.makeText(this, "Đã thêm", Toast.LENGTH_SHORT).show())
+                            .addOnFailureListener(e -> Toast.makeText(this, "Thêm thất bại", Toast.LENGTH_SHORT).show());
+                })
+                .setNegativeButton("Hủy", null)
+                .show();
+    }
 
     private void loadDocuments() {
         documentsRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onDataChange(DataSnapshot snapshot) {
                 documentList.clear();
                 for (DataSnapshot snap : snapshot.getChildren()) {
                     Document doc = snap.getValue(Document.class);
@@ -75,32 +87,11 @@ public class ManageDocumentsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(DatabaseError error) {
                 Toast.makeText(ManageDocumentsActivity.this, "Lỗi tải dữ liệu", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void showAddDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View view = LayoutInflater.from(this).inflate(R.layout.dialog_add_document, null);
 
-        EditText etSubjectsName = view.findViewById(R.id.etSubjectsName);
-        EditText etDocumentName = view.findViewById(R.id.etDocumentName);
-        EditText etType = view.findViewById(R.id.etType);
-
-        builder.setView(view)
-                .setTitle("Thêm tài liệu")
-                .setPositiveButton("Thêm", (dialog, which) -> {
-                    String subjectName = etSubjectsName.getText().toString();
-                    String documentName = etDocumentName.getText().toString();
-                    String type = etType.getText().toString();
-
-                    String id = documentsRef.push().getKey();
-                    Document document = new Document(id, subjectName, documentName, type);
-                    documentsRef.child(id).setValue(document);
-                })
-                .setNegativeButton("Hủy", null);
-    }
 }
-    
