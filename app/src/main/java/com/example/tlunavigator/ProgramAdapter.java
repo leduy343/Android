@@ -41,7 +41,7 @@ public class ProgramAdapter extends RecyclerView.Adapter<ProgramAdapter.ProgramV
     @Override
     public void onBindViewHolder(@NonNull ProgramAdapter.ProgramViewHolder holder, int position) {
         TrainingProgram Program = trainingPrograms.get(position);
-        holder.tvName.setText("Tên chương trình: " + Program.programName);
+        holder.tvName.setText("Tên chương trình: " + Program.name);
         holder.tvCode.setText("Mã chương trình: " + Program.code);
         holder.tvCredit.setText("Số tín chỉ: " + Program.credit);
 
@@ -97,7 +97,7 @@ public class ProgramAdapter extends RecyclerView.Adapter<ProgramAdapter.ProgramV
         EditText etCode = view.findViewById(R.id.etProgramCode);
         EditText etCredit = view.findViewById(R.id.etProgramCredit);
 
-        etName.setText(subject.programName);
+        etName.setText(subject.name);
         etCode.setText(subject.code);
         etCredit.setText(String.valueOf(subject.credit));
 
