@@ -151,11 +151,11 @@
             android:padding="12dp">
 
             <ImageButton
-                android:id="@+id/btnTaiNguyen"
+                android:id="@+id/btnManageDocuments"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Tài nguyên"
+                android:contentDescription="Tài liệu"
                 android:scaleType="centerInside"
                 android:src="@drawable/ic_file" />
 
