@@ -58,14 +58,13 @@ public class ManageDocumentsActivity extends AppCompatActivity {
                     String subject = etSubjectsName.getText().toString().trim();
                     String name = etDocumentName.getText().toString().trim();
                     String type = etType.getText().toString().trim();
-
                     if (subject.isEmpty() || name.isEmpty() || type.isEmpty()) {
                         Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
                     String id = documentsRef.push().getKey(); // tạo ID tự động
-                    Document document = new Document(id, subject, name, type);
+                    Document document = new Document(id, subject, name, type, "");
                     documentsRef.child(id).setValue(document)
                             .addOnSuccessListener(aVoid -> Toast.makeText(this, "Đã thêm", Toast.LENGTH_SHORT).show())
                             .addOnFailureListener(e -> Toast.makeText(this, "Thêm thất bại", Toast.LENGTH_SHORT).show());
