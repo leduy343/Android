@@ -4,11 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/etSubjectsName"
-        android:hint="Tên môn học"
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteSubject"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:hint="Chọn môn học"
+        />
 
     <EditText
         android:id="@+id/etDocumentName"

@@ -2,6 +2,7 @@ package com.example.tlunavigator;
 
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -27,7 +28,7 @@ import java.util.List;
 import java.util.Map;
 
 public class AddSubjectToProgramActivity extends AppCompatActivity {
-    private Spinner spinnerSubjects;
+    private AutoCompleteTextView autoCompleteSubject;
     private RadioGroup rgType;
     private Button btnAdd;
 
@@ -46,7 +47,7 @@ public class AddSubjectToProgramActivity extends AppCompatActivity {
             return insets;
         });
 
-        spinnerSubjects = findViewById(R.id.spinnerSubjects);
+        autoCompleteSubject = findViewById(R.id.autoCompleteSubject);
         rgType = findViewById(R.id.rgType);
         btnAdd = findViewById(R.id.btnAddSubject);
 
@@ -72,7 +73,8 @@ public class AddSubjectToProgramActivity extends AppCompatActivity {
                         subjectAdapter = new ArrayAdapter<>(AddSubjectToProgramActivity.this,
                                 android.R.layout.simple_spinner_item, names);
                         subjectAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        spinnerSubjects.setAdapter(subjectAdapter);
+                        autoCompleteSubject.setAdapter(subjectAdapter);
+                        autoCompleteSubject.setThreshold(1);
                     }
 
                     @Override
@@ -81,7 +83,7 @@ public class AddSubjectToProgramActivity extends AppCompatActivity {
     }
 
     private void addSubjectToProgram() {
-        String selectedName = (String) spinnerSubjects.getSelectedItem();
+        String selectedName = autoCompleteSubject.getText().toString();
         String subjectId = subjectIdMap.get(selectedName);
 
         int checkedId = rgType.getCheckedRadioButtonId();
