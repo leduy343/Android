@@ -3,6 +3,7 @@ package com.example.tlunavigator;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,15 +45,18 @@ public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.Docume
         holder.tvSubjectName.setText("Môn: " + document.subjectName);
         holder.tvDocumentName.setText("Tài liệu: " + document.documentName);
         holder.tvType.setText("Loại: " + document.type);
-        holder.tvDocument.setOnClickListener(v -> {
-            holder.tvDocument.setOnClickListener(view -> {
-                Intent intent = new Intent(context, UploadFileActivity.class);
+
+        // Nếu có link YouTube thì hiển thị và cho click mở
+        if (document.youtubeLink != null && !document.youtubeLink.isEmpty()) {
+            holder.tvDocument.setText("Video: " + document.youtubeLink);
+            holder.tvDocument.setOnClickListener(v -> {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(document.youtubeLink));
                 context.startActivity(intent);
-
-
-        });
-
-        });
+            });
+        } else {
+            holder.tvDocument.setText("Thêm link YouTube");
+            holder.tvDocument.setOnClickListener(v -> showYouTubeDialog(document));
+        }
 
         holder.btnEdit.setOnClickListener(v -> showEditDialog(document));
         holder.btnDelete.setOnClickListener(v -> deleteDocument(document));
@@ -78,6 +82,32 @@ public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.Docume
         }
     }
 
+    private void showYouTubeDialog(Document document) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Nhập link YouTube");
+
+        final EditText input = new EditText(context);
+        input.setHint("https://www.youtube.com/...");
+        builder.setView(input);
+
+        builder.setPositiveButton("Lưu", (dialog, which) -> {
+            String link = input.getText().toString().trim();
+            if (!link.isEmpty() && link.startsWith("http")) {
+                document.youtubeLink = link;
+                dbRef.child(document.id).setValue(document)
+                        .addOnSuccessListener(aVoid ->
+                                Toast.makeText(context, "Đã lưu link YouTube", Toast.LENGTH_SHORT).show())
+                        .addOnFailureListener(e ->
+                                Toast.makeText(context, "Lỗi khi lưu link", Toast.LENGTH_SHORT).show());
+            } else {
+                Toast.makeText(context, "Link không hợp lệ", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setNegativeButton("Hủy", null);
+        builder.show();
+    }
+
     private void showEditDialog(Document document) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_add_document, null);
@@ -97,7 +127,7 @@ public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.Docume
                     String newName = etDocumentName.getText().toString();
                     String newType = etType.getText().toString();
 
-                    Document updated = new Document(document.id, newSubject, newName, newType);
+                    Document updated = new Document(document.id, newSubject, newName, newType, document.youtubeLink);
                     dbRef.child(document.id).setValue(updated)
                             .addOnSuccessListener(aVoid ->
                                     Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_SHORT).show())
