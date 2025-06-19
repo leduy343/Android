@@ -2,11 +2,11 @@ package com.example.tlunavigator.model;
 
 public class Document {
     public String id;
-    public String subjectName;    // Tên môn học
-    public String documentName;   // Tên tài liệu
-    public String type;           // Loại
+    public String subjectName;
+    public String documentName;
+    public String type;
 
-    public Document() {}
+    public Document() {} // Required for Firebase
 
     public Document(String id, String subjectName, String documentName, String type) {
         this.id = id;
