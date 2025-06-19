@@ -6,14 +6,16 @@ public class Document {
     public String subjectId;
     public String documentName;
     public String type;
+    public String youtubeLink; 
+  
+    public Document() {}
 
-    public Document() {} // Required for Firebase
-
-    public Document(String id,String subjectId ,String subjectName, String documentName, String type) {
+    public Document(String id,String subjectId ,String subjectName, String documentName, String type, String youtubeLink) {
         this.id = id;
         this.subjectName = subjectName;
         this.subjectId = subjectId;
         this.documentName = documentName;
         this.type = type;
+        this.youtubeLink = youtubeLink;
     }
 }
