@@ -27,6 +27,7 @@ public class AdminMainActivity extends AppCompatActivity {
         btnProgram = findViewById(R.id.btnChuongTrinh);
         btnManageUsers = findViewById(R.id.btnManageUsers);
         btnManageSubjects = findViewById(R.id.btnManageSubjects);
+        btnManageDocuments = findViewById(R.id.btnManageDocuments);
         btnProgram.setOnClickListener( v-> {
             Intent intent =new Intent(AdminMainActivity.this,ManageTrainingProgramActivity.class);
             startActivity(intent);
@@ -40,5 +41,11 @@ public class AdminMainActivity extends AppCompatActivity {
                 Intent intent = new Intent(AdminMainActivity.this,ManageSubjectsActivity.class);
                 startActivity(intent);
         });
+        btnManageDocuments = findViewById(R.id.btnManageDocuments);
+        btnManageDocuments.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ManageDocumentsActivity.class);
+            startActivity(intent);
+        });
+
     }
 }

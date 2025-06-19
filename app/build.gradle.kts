@@ -32,6 +32,7 @@ android {
 }
 
 dependencies {
+    implementation ("com.google.firebase:firebase-storage")
     implementation(platform("com.google.firebase:firebase-bom:33.15.0"))
     implementation(libs.appcompat)
     implementation(libs.material)
