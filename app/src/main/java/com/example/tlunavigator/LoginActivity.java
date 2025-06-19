@@ -83,7 +83,8 @@ public class LoginActivity extends AppCompatActivity {
                                         Intent intent = new Intent(LoginActivity.this, AdminMainActivity.class);
                                         startActivity(intent);
                                     } else {
-                                        Intent intent = new Intent(LoginActivity.this, UserMainActivity.class);
+                                        Intent intent = new Intent(LoginActivity.this, GetstudentinfoActivity.class);
+                                        //Intent intent = new Intent(LoginActivity.this, UserMainActivity.class);
                                         startActivity(intent);
                                     }
 
