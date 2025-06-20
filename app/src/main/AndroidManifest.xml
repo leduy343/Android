@@ -18,6 +18,12 @@
         android:theme="@style/Theme.TluNavigator"
         tools:targetApi="31">
         <activity
+            android:name=".ImprovementSubjectsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserInfActivity"
+            android:exported="false" />
+        <activity
             android:name=".GetstudentinfoActivity"
             android:exported="false" />
         <activity
@@ -37,7 +43,7 @@
             android:exported="false" />
         <activity
             android:name=".ManageDocumentsActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".ManageSubjectsActivity"
             android:exported="false" />
@@ -47,27 +53,17 @@
         <activity
             android:name=".ManageUsersActivity"
             android:exported="false" />
-
         <activity
             android:name=".ForgotPasswordActivity"
             android:exported="false" />
         <activity
             android:name=".AdminMainActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".UserAllDocumentsActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".UserMainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".UserDashboardActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -75,6 +71,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".UserAllDocumentsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserDashboardActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
