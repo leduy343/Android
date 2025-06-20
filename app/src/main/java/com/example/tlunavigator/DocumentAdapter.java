@@ -33,11 +33,13 @@ public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.Docume
 
     private Context context;
     private List<Document> documentList;
+    private boolean showButtons;
     private DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Documents");
 
-    public DocumentAdapter(Context context, List<Document> documentList) {
+    public DocumentAdapter(Context context, List<Document> documentList, boolean showButtons) {
         this.context = context;
         this.documentList = documentList;
+        this.showButtons = showButtons;
     }
 
     @NonNull
@@ -54,7 +56,6 @@ public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.Docume
         holder.tvDocumentName.setText("Tài liệu: " + document.documentName);
         holder.tvType.setText("Loại: " + document.type);
 
-        // Nếu có link YouTube thì hiển thị và cho click mở
         if (document.youtubeLink != null && !document.youtubeLink.isEmpty()) {
             holder.tvDocument.setText("Video: " + document.youtubeLink);
             holder.tvDocument.setOnClickListener(v -> {
@@ -63,11 +64,20 @@ public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.Docume
             });
         } else {
             holder.tvDocument.setText("Thêm link YouTube");
-            holder.tvDocument.setOnClickListener(v -> showYouTubeDialog(document));
+            holder.tvDocument.setOnClickListener(v -> {
+                if (showButtons) showYouTubeDialog(document);
+            });
         }
 
-        holder.btnEdit.setOnClickListener(v -> showEditDialog(document));
-        holder.btnDelete.setOnClickListener(v -> deleteDocument(document));
+        if (showButtons) {
+            holder.btnEdit.setVisibility(View.VISIBLE);
+            holder.btnDelete.setVisibility(View.VISIBLE);
+            holder.btnEdit.setOnClickListener(v -> showEditDialog(document));
+            holder.btnDelete.setOnClickListener(v -> deleteDocument(document));
+        } else {
+            holder.btnEdit.setVisibility(View.GONE);
+            holder.btnDelete.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -153,6 +163,7 @@ public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.Docume
                 Toast.makeText(context, "Lỗi tải môn học", Toast.LENGTH_SHORT).show();
             }
         });
+
         builder.setTitle("Chỉnh sửa tài liệu")
                 .setPositiveButton("Lưu", (dialog, which) -> {
                     String newSubject = autoCompleteSubject.getText().toString();
@@ -160,7 +171,7 @@ public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.Docume
                     String newType = etType.getText().toString();
                     String subjectId = subjectIdMap.get(newSubject);
 
-                    Document updated = new Document(document.id,subjectId ,newSubject, newName, newType, document.youtubeLink);
+                    Document updated = new Document(document.id, subjectId, newSubject, newName, newType, document.youtubeLink);
                     dbRef.child(document.id).setValue(updated)
                             .addOnSuccessListener(aVoid ->
                                     Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_SHORT).show())
