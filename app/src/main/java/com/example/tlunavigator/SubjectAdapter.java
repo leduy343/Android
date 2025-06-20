@@ -1,6 +1,7 @@
 package com.example.tlunavigator;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,12 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
 
         holder.btnEdit.setOnClickListener(v -> showEditDialog(subject));
         holder.btnDelete.setOnClickListener(v -> deleteSubject(subject));
+
+        holder.itemView.setOnClickListener(v-> {
+            Intent intent = new Intent(context,DocumentOfSubjectActivity.class);
+            intent.putExtra("subjectid",subject.id);
+            context.startActivity(intent);
+        });
     }
 
     @Override

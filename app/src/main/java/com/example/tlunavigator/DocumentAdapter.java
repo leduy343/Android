@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -16,10 +18,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tlunavigator.model.Document;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.DocumentViewHolder> {
 
@@ -113,21 +121,46 @@ public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.Docume
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_add_document, null);
         builder.setView(view);
 
-        EditText etSubjectsName = view.findViewById(R.id.etSubjectsName);
+        AutoCompleteTextView autoCompleteSubject = view.findViewById(R.id.autoCompleteSubject);
         EditText etDocumentName = view.findViewById(R.id.etDocumentName);
         EditText etType = view.findViewById(R.id.etType);
 
-        etSubjectsName.setText(document.subjectName);
+        autoCompleteSubject.setText(document.subjectName);
         etDocumentName.setText(document.documentName);
         etType.setText(document.type);
 
+        List<String> subjectNames = new ArrayList<>();
+        Map<String, String> subjectIdMap = new HashMap<>();
+
+        DatabaseReference subjectsRef = FirebaseDatabase.getInstance().getReference("Subjects");
+        subjectsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    String name = data.child("name").getValue(String.class);
+                    String id = data.getKey();
+                    subjectNames.add(name);
+                    subjectIdMap.put(name, id);
+                }
+
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_dropdown_item_1line, subjectNames);
+                autoCompleteSubject.setAdapter(adapter);
+                autoCompleteSubject.setThreshold(1);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(context, "Lỗi tải môn học", Toast.LENGTH_SHORT).show();
+            }
+        });
         builder.setTitle("Chỉnh sửa tài liệu")
                 .setPositiveButton("Lưu", (dialog, which) -> {
-                    String newSubject = etSubjectsName.getText().toString();
+                    String newSubject = autoCompleteSubject.getText().toString();
                     String newName = etDocumentName.getText().toString();
                     String newType = etType.getText().toString();
+                    String subjectId = subjectIdMap.get(newSubject);
 
-                    Document updated = new Document(document.id, newSubject, newName, newType, document.youtubeLink);
+                    Document updated = new Document(document.id,subjectId ,newSubject, newName, newType, document.youtubeLink);
                     dbRef.child(document.id).setValue(updated)
                             .addOnSuccessListener(aVoid ->
                                     Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_SHORT).show())
