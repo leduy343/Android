@@ -40,7 +40,7 @@ public class ManageDocumentsActivity extends AppCompatActivity {
         btnAdd = findViewById(R.id.btnAddDocument);
 
         documentList = new ArrayList<>();
-        adapter = new DocumentAdapter(this, documentList);
+        adapter = new DocumentAdapter(this, documentList, false);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
