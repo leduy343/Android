@@ -40,7 +40,7 @@ public class DocumentOfSubjectActivity extends AppCompatActivity {
         });
         recyclerView = findViewById(R.id.recyclerViewDocuments);
         documentList = new ArrayList<>();
-        adapter = new DocumentAdapter(this, documentList);
+        adapter = new DocumentAdapter(this, documentList, false);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
