@@ -1,4 +1,4 @@
-package com.example.tlunavigator;
+package com.example.tlunavigator.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tlunavigator.R;
 import com.example.tlunavigator.model.Document;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
