@@ -1,4 +1,4 @@
-package com.example.tlunavigator;
+package com.example.tlunavigator.adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tlunavigator.DocumentOfSubjectActivity;
 import com.example.tlunavigator.R;
 import com.example.tlunavigator.model.Subject;
 import com.google.firebase.database.DatabaseReference;
@@ -49,7 +50,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
         holder.btnDelete.setOnClickListener(v -> deleteSubject(subject));
 
         holder.itemView.setOnClickListener(v-> {
-            Intent intent = new Intent(context,DocumentOfSubjectActivity.class);
+            Intent intent = new Intent(context, DocumentOfSubjectActivity.class);
             intent.putExtra("subjectid",subject.id);
             context.startActivity(intent);
         });

@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tlunavigator.adapter.DocumentAdapter;
 import com.example.tlunavigator.model.Document;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
