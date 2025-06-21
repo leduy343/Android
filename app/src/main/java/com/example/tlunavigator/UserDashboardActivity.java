@@ -23,7 +23,7 @@ public class UserDashboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Chuyển sang UserAllDocumentActivity
-                Intent intent = new Intent(UserDashboardActivity.this, UserAllDocumentsActivity.class);
+                Intent intent = new Intent(UserDashboardActivity.this, MajorListActivity.class);
                 startActivity(intent);
             }
         });

@@ -18,6 +18,9 @@
         android:theme="@style/Theme.TluNavigator"
         tools:targetApi="31">
         <activity
+            android:name=".MajorListActivity"
+            android:exported="false" />
+        <activity
             android:name=".GetstudentinfoActivity"
             android:exported="false" />
         <activity
