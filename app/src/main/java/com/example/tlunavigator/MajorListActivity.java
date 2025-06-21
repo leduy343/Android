@@ -35,9 +35,12 @@ public class MajorListActivity extends AppCompatActivity {
         majorList.add(new Major("7520320", "Kỹ thuật môi trường"));
 
         adapter = new MajorAdapter(majorList, major -> {
-            Intent intent = new Intent(MajorListActivity.this, UserAllDocumentsActivity.class);
-            intent.putExtra("majorCode", major.getCode()); // Truyền mã ngành
-            startActivity(intent);
+            if ("Công nghệ thông tin".equals(major.getName())) {
+                // 👉 Chỉ xử lý khi là ngành CNTT
+                Intent intent = new Intent(MajorListActivity.this, SubjectActivity.class);
+                startActivity(intent);
+            }
+            // 👉 Các ngành khác sẽ không làm gì cả
         });
 
         recyclerView.setAdapter(adapter);

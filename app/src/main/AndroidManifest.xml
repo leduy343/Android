@@ -24,6 +24,9 @@
             android:name=".GetstudentinfoActivity"
             android:exported="false" />
         <activity
+            android:name=".SubjectActivity"
+            android:exported="false" />
+        <activity
             android:name=".DocumentOfSubjectActivity"
             android:exported="false" />
         <activity
@@ -62,7 +65,13 @@
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="false"/>
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".UserAllDocumentsActivity"
             android:exported="false"/>
@@ -71,13 +80,7 @@
             android:exported="false" />
         <activity
             android:name=".UserDashboardActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"/>
     </application>
 
 </manifest>
