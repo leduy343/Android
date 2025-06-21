@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".UserDashboardActivity"
     android:background="#2196F3">
 
     <LinearLayout
@@ -57,17 +59,16 @@
 
             <!-- Nút 1: Thông tin -->
             <LinearLayout
-                android:id="@+id/btnInfo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="@mipmap/ic_launcher"
                 android:padding="12dp"
                 android:layout_margin="8dp">
 
                 <ImageButton
+                    android:id="@+id/btnInfo"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:src="@mipmap/ic_launcher" />
@@ -89,7 +90,6 @@
                 android:layout_columnWeight="1"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="@mipmap/ic_launcher"
                 android:padding="12dp"
                 android:layout_margin="8dp">
 
@@ -109,17 +109,16 @@
 
             <!-- Nút 3: Tài liệu -->
             <LinearLayout
-                android:id="@+id/btnDocs"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="@mipmap/ic_launcher"
                 android:padding="12dp"
                 android:layout_margin="8dp">
 
                 <ImageButton
+                    android:id="@+id/btnDocs"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:src="@mipmap/ic_launcher" />
@@ -135,17 +134,16 @@
 
             <!-- Nút 4: Tiến độ -->
             <LinearLayout
-                android:id="@+id/btnProgress"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="@mipmap/ic_launcher"
                 android:padding="12dp"
                 android:layout_margin="8dp">
 
                 <ImageButton
+                    android:id="@+id/btnProgress"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:src="@mipmap/ic_launcher" />
@@ -161,17 +159,16 @@
 
             <!-- Nút 5: Học lại -->
             <LinearLayout
-                android:id="@+id/btnRetake"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="@mipmap/ic_launcher"
                 android:padding="12dp"
                 android:layout_margin="8dp">
 
                 <ImageButton
+                    android:id="@+id/btnRetake"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:src="@mipmap/ic_launcher" />
@@ -187,17 +184,16 @@
 
             <!-- Nút 6: Kết quả -->
             <LinearLayout
-                android:id="@+id/btnResult"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="@mipmap/ic_launcher"
                 android:padding="12dp"
                 android:layout_margin="8dp">
 
                 <ImageButton
+                    android:id="@+id/btnResult"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:src="@mipmap/ic_launcher" />
@@ -213,18 +209,24 @@
 
         </GridLayout>
 
-
-        <TextView
-            android:id="@+id/tvGPA"
+        <LinearLayout
+            android:background="@drawable/info_background"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="BẠN ĐÃ ĐẠT ĐƯỢC\n3.2/4 GPA"
-            android:gravity="center"
-            android:padding="16dp"
-            android:background="@mipmap/ic_launcher"
-            android:textSize="18sp"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:layout_marginTop="24dp" />
+            android:orientation="horizontal">
+            <TextView
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="23dp"
+                android:layout_weight="1"
+                android:text="BẠN ĐÃ ĐẠT ĐƯỢC
+                3.2/4 GPA"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+            <ImageView
+                android:layout_width="74dp"
+                android:layout_height="74dp"/>
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

@@ -1,4 +1,4 @@
-package com.example.tlunavigator;
+package com.example.tlunavigator.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tlunavigator.R;
+import com.example.tlunavigator.SubjectWithType;
 import com.example.tlunavigator.model.Subject;
 
 import java.util.List;
