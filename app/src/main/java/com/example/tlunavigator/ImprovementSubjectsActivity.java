@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tlunavigator.adapter.ImprovementAdapter;
@@ -39,11 +40,11 @@ public class ImprovementSubjectsActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        getmark();
         recyclerView =findViewById(R.id.recyclerImprov);
-        adapter = new ImprovementAdapter(ImprovementSubjectsActivity.this,improvementSubjects);
-        recyclerView.setAdapter(adapter);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        getmark();
+
     }
 
     private void getmark(){
@@ -57,16 +58,14 @@ public class ImprovementSubjectsActivity extends AppCompatActivity {
                         int lastColon = item.lastIndexOf(":");
                         String name = item.substring(0, lastColon).trim();
                         String gradeStr = item.substring(lastColon + 1).trim();
-                        try {
-                            double grade = Double.parseDouble(gradeStr);
-                            if (grade < 7.0) {
+                            if (gradeStr.equals("D") || gradeStr.equals("C") || gradeStr.equals("F")) {
                                 improvementSubjects.add(name + ": " + gradeStr);
                             }
-                        } catch (NumberFormatException e) {
-                            Toast.makeText(ImprovementSubjectsActivity.this, "Không phải điểm số", Toast.LENGTH_SHORT).show();
-                        }
                     }
                 }
+                adapter = new ImprovementAdapter(ImprovementSubjectsActivity.this,improvementSubjects);
+
+                recyclerView.setAdapter(adapter);
             }
 
             @Override
