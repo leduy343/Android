@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class UserDashboardActivity extends AppCompatActivity {
 
-    private ImageButton btnDocs,btnInfo;
+    private ImageButton btnDocs,btnInfo,btnRetake;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +18,7 @@ public class UserDashboardActivity extends AppCompatActivity {
 
         btnDocs = findViewById(R.id.btnDocs);
         btnInfo = findViewById(R.id.btnInfo);
+        btnRetake = findViewById(R.id.btnRetake);
         btnInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -28,6 +29,13 @@ public class UserDashboardActivity extends AppCompatActivity {
         btnDocs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(intent);
+            }
+        });
+        btnRetake.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserDashboardActivity.this, ImprovementSubjectsActivity.class);
                 startActivity(intent);
             }
         });
