@@ -7,167 +7,151 @@
     android:layout_height="match_parent"
     tools:context=".AdminMainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/header"
-        android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:background="#0D47A1"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+    <include layout="@layout/admin_layout"/>
 
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:src="@drawable/ic_graduation"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="123dp">
 
         <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:gravity="center"
             android:text="Trang chủ"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/logo"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="12dp" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:textColor="@color/white"
+            android:textSize="24dp"
+            android:textStyle="bold" />
 
-    <GridLayout
-        android:id="@+id/gridMenu"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:columnCount="2"
-        android:useDefaultMargins="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header">
-
-        <!-- ITEM: Chương trình -->
-        <LinearLayout
-            android:id="@+id/item_chuong_trinh"
-            android:layout_width="0dp"
+        <GridLayout
+            android:id="@+id/gridMenu"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="12dp">
+            android:layout_margin="16dp"
+            android:columnCount="2">
 
-            <ImageButton
-                android:id="@+id/btnChuongTrinh"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Chương trình"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_program" />
-
-            <TextView
-                android:layout_width="wrap_content"
+            <!-- ITEM: Chương trình -->
+            <LinearLayout
+                android:id="@+id/item_chuong_trinh"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Chương trình"
-                android:textColor="#1976D2"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                android:layout_columnWeight="1"
+                android:layout_margin="10dp"
+                android:background="@drawable/info_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="12dp">
 
-        <!-- ITEM: Môn học -->
-        <LinearLayout
-            android:id="@+id/item_mon_hoc"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="12dp">
+                <ImageView
+                    android:id="@+id/btnChuongTrinh"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Chương trình"
+                    android:src="@drawable/ic_program" />
 
-            <ImageButton
-                android:id="@+id/btnManageSubjects"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Môn học"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_book" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Chương trình"
+                    android:textColor="#1976D2"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <!-- ITEM: Môn học -->
+            <LinearLayout
+                android:id="@+id/item_mon_hoc"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Môn học"
-                android:textColor="#1976D2"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                android:layout_columnWeight="1"
+                android:layout_margin="10dp"
+                android:background="@drawable/info_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="12dp">
 
-        <!-- ITEM: Người dùng -->
-        <LinearLayout
-            android:id="@+id/item_nguoi_dung"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="12dp">
+                <ImageView
+                    android:id="@+id/btnManageSubjects"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    app:tint="@color/blue"
+                    android:contentDescription="Môn học"
+                    android:src="@drawable/ic_book" />
 
-            <ImageButton
-                android:id="@+id/btnManageUsers"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Người dùng"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_user" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Môn học"
+                    android:textColor="#1976D2"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <!-- ITEM: Người dùng -->
+            <LinearLayout
+                android:id="@+id/item_nguoi_dung"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Người dùng"
-                android:textColor="#1976D2"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                android:layout_columnWeight="1"
+                android:layout_margin="10dp"
+                android:background="@drawable/info_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="12dp">
 
-        <!-- ITEM: Tài nguyên -->
-        <LinearLayout
-            android:id="@+id/item_tai_nguyen"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="12dp">
+                <ImageView
+                    android:id="@+id/btnManageUsers"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    app:tint="@color/blue"
+                    android:contentDescription="Người dùng"
+                    android:src="@drawable/ic_user" />
 
-            <ImageButton
-                android:id="@+id/btnManageDocuments"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Tài liệu"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_file" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Người dùng"
+                    android:textColor="#1976D2"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <!-- ITEM: Tài nguyên -->
+            <LinearLayout
+                android:id="@+id/item_tai_nguyen"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Tài nguyên"
-                android:textColor="#1976D2"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                android:layout_columnWeight="1"
+                android:layout_margin="10dp"
+                android:background="@drawable/info_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="12dp">
 
-    </GridLayout>
+                <ImageView
+                    android:id="@+id/btnManageDocuments"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    app:tint="@color/blue"
+                    android:contentDescription="Tài liệu"
+                    android:src="@drawable/ic_file" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Tài nguyên"
+                    android:textColor="#1976D2"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </GridLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
