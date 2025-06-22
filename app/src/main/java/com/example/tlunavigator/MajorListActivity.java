@@ -2,6 +2,7 @@ package com.example.tlunavigator;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,13 +36,15 @@ public class MajorListActivity extends AppCompatActivity {
         majorList.add(new Major("7520320", "Kỹ thuật môi trường"));
 
         adapter = new MajorAdapter(majorList, major -> {
-            if ("Công nghệ thông tin".equals(major.getName())) {
-                // 👉 Chỉ xử lý khi là ngành CNTT
-                Intent intent = new Intent(MajorListActivity.this, SubjectActivity.class);
+            if ("7480201".equals(major.getCode())) {
+                Intent intent = new Intent(MajorListActivity.this, CourseListActivity.class);
+                intent.putExtra("majorCode", major.getCode());
                 startActivity(intent);
+            } else {
+                Toast.makeText(MajorListActivity.this, "Chưa hỗ trợ ngành này", Toast.LENGTH_SHORT).show();
             }
-            // 👉 Các ngành khác sẽ không làm gì cả
         });
+
 
         recyclerView.setAdapter(adapter);
     }

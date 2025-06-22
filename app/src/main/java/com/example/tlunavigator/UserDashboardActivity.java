@@ -96,5 +96,12 @@ public class UserDashboardActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btnDocs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserDashboardActivity.this, MajorListActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
