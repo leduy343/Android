@@ -18,8 +18,18 @@
         android:theme="@style/Theme.TluNavigator"
         tools:targetApi="31">
         <activity
+            android:name=".GPAResultActivity"
+            android:exported="false" />
+        <activity
             android:name=".MajorListActivity"
             android:exported="false" />
+        <activity
+            android:name=".StudyProgressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserSubjectActivity"
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".GetstudentinfoActivity"
             android:exported="false" />
@@ -34,6 +44,9 @@
             android:exported="false" />
         <activity
             android:name=".SubjectinProgram"
+            android:exported="false" />
+        <activity
+            android:name=".ImprovementSubjectsActivity"
             android:exported="false" />
         <activity
             android:name=".ManageTrainingProgramActivity"
@@ -66,9 +79,6 @@
         <activity
             android:name=".UserAllDocumentsActivity"
             android:exported="false"/>
-        <activity
-            android:name=".UserMainActivity"
-            android:exported="false" />
         <activity
             android:name=".UserDashboardActivity"
             android:exported="true">
