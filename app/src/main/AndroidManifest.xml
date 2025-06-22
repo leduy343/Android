@@ -28,8 +28,7 @@
             android:exported="false" />
         <activity
             android:name=".UserSubjectActivity"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:exported="false" /> -->
+            android:exported="false" />
         <activity
             android:name=".GetstudentinfoActivity"
             android:exported="false" />
@@ -41,6 +40,9 @@
             android:exported="false" />
         <activity
             android:name=".AddSubjectToProgramActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CourseListActivity"
             android:exported="false" />
         <activity
             android:name=".SubjectinProgram"
