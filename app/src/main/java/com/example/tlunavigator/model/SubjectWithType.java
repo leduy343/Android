@@ -1,6 +1,4 @@
-package com.example.tlunavigator;
-
-import com.example.tlunavigator.model.Subject;
+package com.example.tlunavigator.model;
 
 public class SubjectWithType {
     public Subject subject;

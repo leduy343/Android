@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tlunavigator.adapter.SubInProgramAdapter;
 import com.example.tlunavigator.model.Subject;
+import com.example.tlunavigator.model.SubjectWithType;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

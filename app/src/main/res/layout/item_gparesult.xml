@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="10dp"
+    android:layout_width="match_parent"
+    android:backgroundTint="@color/blue"
+    android:orientation="vertical"
+    android:background="@drawable/info_background"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/txtsemester"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="24dp"
+        android:text="Học kỳ: "
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <TextView
+        android:id="@+id/txtGPA"
+        android:padding="5dp"
+        android:textSize="24dp"
+        android:textColor="@color/white"
+        android:text="Tín chỉ: 12 GPA: 3,34"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

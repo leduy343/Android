@@ -64,7 +64,6 @@ public class ImprovementSubjectsActivity extends AppCompatActivity {
                     }
                 }
                 adapter = new ImprovementAdapter(ImprovementSubjectsActivity.this,improvementSubjects);
-
                 recyclerView.setAdapter(adapter);
             }
 

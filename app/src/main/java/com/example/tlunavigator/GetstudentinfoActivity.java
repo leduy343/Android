@@ -141,7 +141,6 @@ public class GetstudentinfoActivity extends AppCompatActivity {
         });
     }
 
-    // TODO: Viết tiếp hàm lấy thông tin sinh viên
     private void getStudentInfo(String accessToken) {
         Request request = new Request.Builder()
                 .url("https://sinhvien1.tlu.edu.vn/education/api/studentsubjectmark/findByStudentAndSubjectByLoginUser/113/0/1/1000")
