@@ -58,7 +58,7 @@ public class UserinfoActivity extends AppCompatActivity {
                     String birthday = snapshot.child("birthday").getValue(String.class);
                     String studentId = snapshot.child("studentId").getValue(String.class);
                     String className = snapshot.child("className").getValue(String.class);
-                    String major = snapshot.child("major").getValue(String.class); // nếu có
+                    String major = snapshot.child("speciality").getValue(String.class); // nếu có
                     tvname.setText(name);
                     tvemail.setText(email);
                     tvbitrhday.setText(birthday != null? birthday : "Chưa cập nhật");
