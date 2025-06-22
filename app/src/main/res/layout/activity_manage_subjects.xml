@@ -6,6 +6,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ManageSubjectsActivity">
+    <include layout="@layout/admin_layout"/>
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:gravity="center"
+        android:textSize="24dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:text="Quản lý môn học"/>
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="40dp"
+        android:background="@drawable/ic_back"
+        android:layout_height="40dp"/>
+    
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -25,4 +44,5 @@
             android:layout_alignParentEnd="true"
             android:layout_margin="16dp"/>
     </RelativeLayout>
+</LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
