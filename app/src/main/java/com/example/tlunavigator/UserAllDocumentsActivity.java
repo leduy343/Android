@@ -26,6 +26,8 @@ public class UserAllDocumentsActivity extends AppCompatActivity {
     private List<Document> documentList;
     private DatabaseReference dbRef;
 
+    private String subjectFilter = null; // dùng để lọc theo subject nếu có
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,12 +40,15 @@ public class UserAllDocumentsActivity extends AppCompatActivity {
         adapter = new DocumentAdapter(this, documentList, false); // chỉ đọc
         recyclerView.setAdapter(adapter);
 
+        // 👉 Nhận subject từ intent (nếu có)
+        subjectFilter = getIntent().getStringExtra("subject");
+
         dbRef = FirebaseDatabase.getInstance().getReference("Documents");
 
-        loadAllDocuments();
+        loadFilteredDocuments();
     }
 
-    private void loadAllDocuments() {
+    private void loadFilteredDocuments() {
         dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -51,7 +56,9 @@ public class UserAllDocumentsActivity extends AppCompatActivity {
                 for (DataSnapshot docSnap : snapshot.getChildren()) {
                     Document doc = docSnap.getValue(Document.class);
                     if (doc != null) {
-                        documentList.add(doc);
+                        if (subjectFilter == null || subjectFilter.equalsIgnoreCase(doc.getSubjectName())) {
+                            documentList.add(doc);
+                        }
                     }
                 }
                 adapter.notifyDataSetChanged();
