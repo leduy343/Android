@@ -1,5 +1,6 @@
 package com.example.tlunavigator;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -37,7 +38,14 @@ public class UserAllDocumentsActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         documentList = new ArrayList<>();
-        adapter = new DocumentAdapter(this, documentList, false); // chỉ đọc
+
+        // 🔍 Đọc role từ SharedPreferences
+        SharedPreferences prefs = getSharedPreferences("UserRole", MODE_PRIVATE);
+        String role = prefs.getString("role", "user");
+        boolean isAdmin = "admin".equals(role);
+
+        // ✅ Truyền isAdmin vào Adapter
+        adapter = new DocumentAdapter(this, documentList, isAdmin);
         recyclerView.setAdapter(adapter);
 
         // 👉 Nhận subject từ intent (nếu có)

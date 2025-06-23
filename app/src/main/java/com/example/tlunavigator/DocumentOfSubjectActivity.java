@@ -1,5 +1,6 @@
 package com.example.tlunavigator;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -24,11 +25,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DocumentOfSubjectActivity extends AppCompatActivity {
+
     private RecyclerView recyclerView;
     private DocumentAdapter adapter;
     private List<Document> documentList;
     private DatabaseReference documentsRef;
     private String subjectId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +42,17 @@ public class DocumentOfSubjectActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         recyclerView = findViewById(R.id.recyclerViewDocuments);
         documentList = new ArrayList<>();
-        adapter = new DocumentAdapter(this, documentList, false);
+
+        // ✅ Lấy role từ SharedPreferences
+        SharedPreferences prefs = getSharedPreferences("UserRole", MODE_PRIVATE);
+        String role = prefs.getString("role", "user");
+        boolean isAdmin = "admin".equals(role);
+
+        // ✅ Truyền vào adapter
+        adapter = new DocumentAdapter(this, documentList, isAdmin);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
