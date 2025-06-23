@@ -1,5 +1,6 @@
 package com.example.tlunavigator;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,7 +42,13 @@ public class ManageDocumentsActivity extends AppCompatActivity {
         btnAdd = findViewById(R.id.btnAddDocument);
 
         documentList = new ArrayList<>();
-        adapter = new DocumentAdapter(this, documentList, false);
+
+        // ✅ Lấy role để kiểm tra có phải admin không
+        SharedPreferences prefs = getSharedPreferences("UserRole", MODE_PRIVATE);
+        String role = prefs.getString("role", "user");
+        boolean isAdmin = "admin".equals(role);
+
+        adapter = new DocumentAdapter(this, documentList, isAdmin);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
@@ -51,6 +58,7 @@ public class ManageDocumentsActivity extends AppCompatActivity {
 
         btnAdd.setOnClickListener(v -> showAddDialog());
     }
+
     private void showAddDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_add_document, null);
@@ -84,6 +92,7 @@ public class ManageDocumentsActivity extends AppCompatActivity {
                 Toast.makeText(ManageDocumentsActivity.this, "Lỗi tải môn học", Toast.LENGTH_SHORT).show();
             }
         });
+
         builder.setTitle("Thêm tài liệu mới")
                 .setPositiveButton("Thêm", (dialog, which) -> {
                     String subject = autoSubject.getText().toString().trim();
@@ -97,7 +106,7 @@ public class ManageDocumentsActivity extends AppCompatActivity {
                     }
 
                     String id = documentsRef.push().getKey(); // tạo ID tự động
-                    Document document = new Document(id,subjectId, subject, name, type,"");
+                    Document document = new Document(id, subjectId, subject, name, type, "");
 
                     documentsRef.child(id).setValue(document)
                             .addOnSuccessListener(aVoid -> Toast.makeText(this, "Đã thêm", Toast.LENGTH_SHORT).show())
@@ -125,6 +134,4 @@ public class ManageDocumentsActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }

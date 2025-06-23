@@ -79,11 +79,17 @@ public class LoginActivity extends AppCompatActivity {
                                 if (snapshot.exists()) {
                                     String role = snapshot.child("role").getValue(String.class);
 
+                                    // ✅ Lưu role vào SharedPreferences
+                                    getSharedPreferences("UserRole", MODE_PRIVATE)
+                                            .edit()
+                                            .putString("role", role)
+                                            .apply();
+
+                                    // ✅ Điều hướng tùy role
                                     if ("admin".equals(role)) {
                                         Intent intent = new Intent(LoginActivity.this, AdminMainActivity.class);
                                         startActivity(intent);
                                     } else {
-                                        //Intent intent = new Intent(LoginActivity.this, GetstudentinfoActivity.class);
                                         Intent intent = new Intent(LoginActivity.this, UserDashboardActivity.class);
                                         startActivity(intent);
                                     }
@@ -106,4 +112,5 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
+
 }

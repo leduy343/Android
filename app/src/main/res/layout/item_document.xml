@@ -1,8 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    android:elevation="4dp"
+    android:foreground="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
 
     <LinearLayout
         android:orientation="vertical"
@@ -10,48 +15,68 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView android:id="@+id/tvSubjectName"
+        <TextView
+            android:id="@+id/tvSubjectName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Môn học" />
+            android:text="Môn học"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#000000"/>
 
-        <TextView android:id="@+id/tvDocumentName"
+        <TextView
+            android:id="@+id/tvDocumentName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tên tài liệu" />
+            android:text="Tên tài liệu"
+            android:textSize="15sp"
+            android:layout_marginTop="4dp"
+            android:textColor="#333333"/>
 
-        <TextView android:id="@+id/tvType"
+        <TextView
+            android:id="@+id/tvType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Loại tài liệu" />
+            android:text="Loại tài liệu"
+            android:textSize="15sp"
+            android:textColor="#333333"
+            android:layout_marginTop="2dp" />
+
         <TextView
             android:id="@+id/tvDocument"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Upload file"
-            android:textSize="16sp"
-            android:textColor="#000000"/>
-
+            android:textSize="15sp"
+            android:textColor="#1E88E5"
+            android:layout_marginTop="6dp"
+            android:autoLink="web" />
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="10dp"
+            android:gravity="end">
 
             <ImageButton
                 android:id="@+id/btnEdit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@android:drawable/ic_menu_edit"
-                android:contentDescription="Chỉnh sửa" />
+                android:contentDescription="Chỉnh sửa"
+                android:background="?attr/selectableItemBackground"
+                android:tint="#000000"
+                android:layout_marginEnd="8dp" />
 
             <ImageButton
                 android:id="@+id/btnDelete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@android:drawable/ic_menu_delete"
-                android:contentDescription="Xóa" />
+                android:contentDescription="Xóa"
+                android:background="?attr/selectableItemBackground"
+                android:tint="#D32F2F" />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
