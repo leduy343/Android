@@ -34,13 +34,13 @@ public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.Docume
 
     private Context context;
     private List<Document> documentList;
-    private boolean showButtons;
+    private boolean isAdmin;
     private DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Documents");
 
-    public DocumentAdapter(Context context, List<Document> documentList, boolean showButtons) {
+    public DocumentAdapter(Context context, List<Document> documentList, boolean isAdmin) {
         this.context = context;
         this.documentList = documentList;
-        this.showButtons = showButtons;
+        this.isAdmin = isAdmin;
     }
 
     @NonNull
@@ -57,22 +57,27 @@ public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.Docume
         holder.tvDocumentName.setText("Tài liệu: " + document.documentName);
         holder.tvType.setText("Loại: " + document.type);
 
+        // ✅ Chỉ hiện dòng YouTube khi có link hoặc là admin
         if (document.youtubeLink != null && !document.youtubeLink.isEmpty()) {
+            holder.tvDocument.setVisibility(View.VISIBLE);
             holder.tvDocument.setText("Video: " + document.youtubeLink);
             holder.tvDocument.setOnClickListener(v -> {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(document.youtubeLink));
                 context.startActivity(intent);
             });
-        } else {
+        } else if (isAdmin) {
+            holder.tvDocument.setVisibility(View.VISIBLE);
             holder.tvDocument.setText("Thêm link YouTube");
-            holder.tvDocument.setOnClickListener(v -> {
-                if (showButtons) showYouTubeDialog(document);
-            });
+            holder.tvDocument.setOnClickListener(v -> showYouTubeDialog(document));
+        } else {
+            holder.tvDocument.setVisibility(View.GONE); // ❌ user không thấy dòng nào
         }
 
-        if (showButtons) {
+        // ✅ Xử lý nút sửa / xóa
+        if (isAdmin) {
             holder.btnEdit.setVisibility(View.VISIBLE);
             holder.btnDelete.setVisibility(View.VISIBLE);
+
             holder.btnEdit.setOnClickListener(v -> showEditDialog(document));
             holder.btnDelete.setOnClickListener(v -> deleteDocument(document));
         } else {
