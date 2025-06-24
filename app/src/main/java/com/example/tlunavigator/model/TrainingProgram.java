@@ -8,6 +8,7 @@ public class TrainingProgram {
     public String name;
     public String code;
     public int credit;
+    public int views;
     public Map<String, String> subjects;
 
     public TrainingProgram() {}

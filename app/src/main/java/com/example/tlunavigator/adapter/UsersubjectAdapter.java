@@ -2,6 +2,7 @@ package com.example.tlunavigator.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,10 +24,14 @@ public class UsersubjectAdapter extends RecyclerView.Adapter<UsersubjectAdapter.
 
     Context context;
     List<Subject> subjectslist;
+    List<Subject> subjects;
+
     public  UsersubjectAdapter(Context context, List<Subject>list){
         this.context = context;
         this.subjectslist = list;
+        this.subjects = new ArrayList<>(subjectslist);
     }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

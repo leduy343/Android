@@ -22,20 +22,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/ic_back"
                     android:layout_width="48dp"
                     android:layout_height="32dp"
-                    android:src="@drawable/ic_user"
+                    android:src="@drawable/ic_back"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/ic_password"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:src="@drawable/ic_user"
+                    android:src="@drawable/ic_key"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -56,6 +56,7 @@
                     android:src="@drawable/ic_user" />
 
                 <TextView
+                    android:textColor="@color/white"
                     android:id="@+id/tvname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -73,7 +74,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="16dp"
                     android:text="nguyenvana@gmail.com"
-                    android:textColor="#0000EE" />
+                    android:textColor="@color/white" />
             </LinearLayout>
 
             <!-- Mỗi phần tử thông tin -->
@@ -87,9 +88,12 @@
 
                 <ImageView
                     android:layout_width="48dp"
-                    android:layout_height="48dp" />
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_id"
+                    app:tint="@color/blue" />
 
                 <TextView
+                    android:textColor="@color/blue"
                     android:layout_weight="0.7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -108,23 +112,26 @@
             </LinearLayout>
 
             <LinearLayout
-                android:background="@drawable/info_background"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/info_background"
                 android:orientation="horizontal"
                 android:padding="12dp">
 
                 <ImageView
                     android:layout_width="48dp"
-                    android:layout_height="48dp" />
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_date"
+                    app:tint="@color/blue" />
 
                 <TextView
-                    android:layout_weight="0.7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:layout_weight="0.7"
                     android:text="Ngày sinh: "
+                    android:textColor="@color/blue"
                     android:textSize="21dp" />
 
                 <TextView
@@ -146,10 +153,13 @@
                 android:padding="12dp">
 
                 <ImageView
+                    android:src="@drawable/ic_class"
                     android:layout_width="48dp"
-                    android:layout_height="48dp" />
+                    android:layout_height="48dp"
+                    app:tint="@color/blue" />
 
                 <TextView
+                    android:textColor="@color/blue"
                     android:layout_weight="0.7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -177,10 +187,13 @@
                 android:padding="12dp">
 
                 <ImageView
+                    app:tint="@color/blue"
+                    android:src="@drawable/ic_major"
                     android:layout_width="48dp"
                     android:layout_height="48dp" />
 
                 <TextView
+                    android:textColor="@color/blue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
@@ -208,8 +221,10 @@
                 android:padding="12dp">
 
                 <ImageView
+                    android:src="@drawable/ic_info"
                     android:layout_width="48dp"
-                    android:layout_height="48dp" />
+                    android:layout_height="48dp"
+                    app:tint="@color/blue" />
 
                 <TextView
                     android:id="@+id/tvGetinfo"

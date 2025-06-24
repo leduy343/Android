@@ -6,6 +6,7 @@ public class Subject {
     public String id;
     public String name;
     public String code;
+    public int views;
     public int credit;
 
     public Subject() {}

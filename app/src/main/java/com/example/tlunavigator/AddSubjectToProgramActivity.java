@@ -33,7 +33,8 @@ public class AddSubjectToProgramActivity extends AppCompatActivity {
     private Button btnAdd;
 
     private String programId;
-    private List<Subject> subjectList = new ArrayList<>();
+    private boolean isEdit = false;
+    private String oldSubjectId = null;
     private ArrayAdapter<String> subjectAdapter;
     private Map<String, String> subjectIdMap = new HashMap<>();
     @Override
@@ -51,6 +52,20 @@ public class AddSubjectToProgramActivity extends AppCompatActivity {
         rgType = findViewById(R.id.rgType);
         btnAdd = findViewById(R.id.btnAddSubject);
 
+        isEdit = getIntent().getBooleanExtra("isEdit", false);
+        oldSubjectId = getIntent().getStringExtra("subjectId");
+        if (isEdit) {
+            String subjectName = getIntent().getStringExtra("subjectname");
+            String subjectType = getIntent().getStringExtra("subjectType");
+
+            autoCompleteSubject.setText(subjectName);
+
+            if (subjectType.equals("elective")) {
+                rgType.check(R.id.rbElective);
+            } else {
+                rgType.check(R.id.rbRequired);
+            }
+        }
         programId = getIntent().getStringExtra("ProgramId");
         loadSubjects();
 
@@ -96,7 +111,10 @@ public class AddSubjectToProgramActivity extends AppCompatActivity {
                 .getReference("Program")
                 .child(programId)
                 .child("subjects");
-
+        if (isEdit && oldSubjectId != null && !oldSubjectId.equals(subjectId)) {
+            // Nếu user đổi môn học khác → xóa môn cũ
+            ref.child(oldSubjectId).removeValue();
+        }
         ref.child(subjectId).setValue(type)
                 .addOnSuccessListener(aVoid -> Toast.makeText(this, "Thêm thành công", Toast.LENGTH_SHORT).show())
                 .addOnFailureListener(e -> Toast.makeText(this, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show());
