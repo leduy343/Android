@@ -48,10 +48,6 @@ public class ViewDocumentActivity extends AppCompatActivity {
         String newlink = "https://www.youtube.com/embed/"+videoId;
         webView.loadUrl(newlink);
 
-//        String html = "<html><body style='margin:0;padding:0;'>" +
-//                "<iframe width=\"100%\" height=\"300\" src=\"" + link + "\" frameborder=\"0\" allowfullscreen></iframe>" +
-//                "</body></html>";
-//
-//        webView.loadData(html, "text/html", "utf-8");
+
     }
 }

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@color/blue"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddSubjectToProgramActivity">
@@ -14,6 +15,7 @@
         android:padding="16dp">
 
         <AutoCompleteTextView
+            android:background="@drawable/info_background"
             android:id="@+id/autoCompleteSubject"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,8 +23,11 @@
             />
 
         <RadioGroup
+            android:layout_marginTop="15dp"
+            android:background="@drawable/info_background"
             android:id="@+id/rgType"
-            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <RadioButton
                 android:layout_height="wrap_content"
@@ -36,11 +41,16 @@
                 android:text="Tự chọn" />
         </RadioGroup>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_gravity="center"
+            android:background="@drawable/btn_login"
+            android:backgroundTint="@color/green"
+            android:layout_marginTop="015dp"
             android:id="@+id/btnAddSubject"
-            android:layout_width="match_parent"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Thêm vào chương trình" />
+            android:text=" Lưu lại" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

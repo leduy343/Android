@@ -156,7 +156,6 @@ public class GetstudentinfoActivity extends AppCompatActivity {
                     try {
                         JSONObject json = new JSONObject(responseBody);
                         JSONArray jsonArray = json.getJSONArray("content");
-
                         String name = "";
                         String studentId = "";
                         ArrayList<String> marks = new ArrayList<>();
