@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     android:elevation="4dp"
+    android:background="@drawable/info_background"
     android:foreground="?attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true">
