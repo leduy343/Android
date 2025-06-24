@@ -48,14 +48,15 @@ public class SubjectinProgram extends AppCompatActivity {
             return insets;
         });
 
+        programID = getIntent().getStringExtra("ProgramId");
         btnAdd = findViewById(R.id.btnAdd);
         recyclerView = findViewById(R.id.recyclerSub);
         subList = new ArrayList<>();
-        adapter = new SubInProgramAdapter(this, subList);
+        adapter = new SubInProgramAdapter(this, subList,programID);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
-        programID = getIntent().getStringExtra("ProgramId");
+
 
         Ref = FirebaseDatabase.getInstance().getReference("Program").child(programID).child("subjects");
 

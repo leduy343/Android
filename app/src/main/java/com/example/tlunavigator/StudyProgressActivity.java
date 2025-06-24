@@ -35,7 +35,7 @@ public class StudyProgressActivity extends AppCompatActivity {
     private List<String> uncompletedList = new ArrayList<>();
     private ProgressAdapter completedAdapter, uncompletedAdapter;
 
-    private DatabaseReference userRef, subjectsRef;
+    private DatabaseReference userRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

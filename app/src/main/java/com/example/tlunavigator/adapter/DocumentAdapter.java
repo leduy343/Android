@@ -17,7 +17,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tlunavigator.DocumentOfSubjectActivity;
 import com.example.tlunavigator.R;
+import com.example.tlunavigator.ViewDocumentActivity;
 import com.example.tlunavigator.model.Document;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -83,7 +85,15 @@ public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.Docume
         } else {
             holder.btnEdit.setVisibility(View.GONE);
             holder.btnDelete.setVisibility(View.GONE);
+            holder.itemView.setOnClickListener(v -> {
+                Intent intent = new Intent(context, ViewDocumentActivity.class);
+                intent.putExtra("name",document.documentName);
+                intent.putExtra("link",document.youtubeLink);
+                context.startActivity(intent);
+            });
         }
+
+
     }
 
     @Override

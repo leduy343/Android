@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +16,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -27,7 +30,7 @@ public class UserAllDocumentsActivity extends AppCompatActivity {
     private List<Document> documentList;
     private DatabaseReference dbRef;
 
-    private String subjectFilter = null; // dùng để lọc theo subject nếu có
+    private String subjectid = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,21 +42,43 @@ public class UserAllDocumentsActivity extends AppCompatActivity {
 
         documentList = new ArrayList<>();
 
-        // 🔍 Đọc role từ SharedPreferences
         SharedPreferences prefs = getSharedPreferences("UserRole", MODE_PRIVATE);
         String role = prefs.getString("role", "user");
         boolean isAdmin = "admin".equals(role);
 
-        // ✅ Truyền isAdmin vào Adapter
         adapter = new DocumentAdapter(this, documentList, isAdmin);
         recyclerView.setAdapter(adapter);
 
-        // 👉 Nhận subject từ intent (nếu có)
-        subjectFilter = getIntent().getStringExtra("subject");
+        subjectid = getIntent().getStringExtra("subjectid");
 
         dbRef = FirebaseDatabase.getInstance().getReference("Documents");
-
+        View();
         loadFilteredDocuments();
+    }
+
+    private void View() {
+        DatabaseReference viewRef = FirebaseDatabase.getInstance()
+                .getReference("Subjects")
+                .child(subjectid)
+                .child("views");
+        viewRef.runTransaction(new Transaction.Handler() {
+            @NonNull
+            @Override
+            public Transaction.Result doTransaction(@NonNull MutableData currentData) {
+                Integer integer = currentData.getValue(Integer.class);
+                if(integer == null){
+                    currentData.setValue(1);
+                }else {
+                    currentData.setValue(integer+1);
+                }
+                return Transaction.success(currentData);
+            }
+
+            @Override
+            public void onComplete(@Nullable DatabaseError error, boolean committed, @Nullable DataSnapshot currentData) {
+
+            }
+        });
     }
 
     private void loadFilteredDocuments() {
@@ -64,7 +89,7 @@ public class UserAllDocumentsActivity extends AppCompatActivity {
                 for (DataSnapshot docSnap : snapshot.getChildren()) {
                     Document doc = docSnap.getValue(Document.class);
                     if (doc != null) {
-                        if (subjectFilter == null || subjectFilter.equalsIgnoreCase(doc.getSubjectName())) {
+                        if (subjectid == null || subjectid.equalsIgnoreCase(doc.subjectId)){
                             documentList.add(doc);
                         }
                     }

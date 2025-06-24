@@ -49,11 +49,13 @@ public class ProgramAdapter extends RecyclerView.Adapter<ProgramAdapter.ProgramV
 
         holder.btnDelete.setOnClickListener(v-> DeleteProgram(Program));
 
+        holder.btnEdit.setOnClickListener(v-> showEditDialog(Program) );
         holder.itemView.setOnClickListener(v-> {
             Intent intent = new Intent(context, SubjectinProgram.class);
             intent.putExtra("ProgramId",Program.id);
             context.startActivity(intent);
         });
+
 
 
     }
@@ -90,7 +92,7 @@ public class ProgramAdapter extends RecyclerView.Adapter<ProgramAdapter.ProgramV
         }
     }
 
-    private void showEditDialog(TrainingProgram subject) {
+    private void showEditDialog(TrainingProgram program) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_add_program, null);
         builder.setView(view);
@@ -99,9 +101,9 @@ public class ProgramAdapter extends RecyclerView.Adapter<ProgramAdapter.ProgramV
         EditText etCode = view.findViewById(R.id.etProgramCode);
         EditText etCredit = view.findViewById(R.id.etProgramCredit);
 
-        etName.setText(subject.name);
-        etCode.setText(subject.code);
-        etCredit.setText(String.valueOf(subject.credit));
+        etName.setText(program.name);
+        etCode.setText(program.code);
+        etCredit.setText(String.valueOf(program.credit));
 
         builder.setTitle("Chỉnh sửa môn học")
                 .setPositiveButton("Lưu", (dialog, which) -> {
@@ -109,8 +111,8 @@ public class ProgramAdapter extends RecyclerView.Adapter<ProgramAdapter.ProgramV
                     String newCode = etCode.getText().toString();
                     int newCredit = Integer.parseInt(etCredit.getText().toString());
 
-                    Subject updated = new Subject(subject.id, newName, newCode, newCredit);
-                    dbRef.child(subject.id).setValue(updated)
+                    TrainingProgram updated = new TrainingProgram(program.id, newName,newCredit, newCode);
+                    dbRef.child(program.id).setValue(updated)
                             .addOnSuccessListener(aVoid -> Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_SHORT).show())
                             .addOnFailureListener(e -> Toast.makeText(context, "Lỗi cập nhật", Toast.LENGTH_SHORT).show());
                 })

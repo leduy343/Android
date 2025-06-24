@@ -13,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="123dp">
+        tools:layout_editor_absoluteX="67dp"
+        tools:layout_editor_absoluteY="137dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -24,6 +24,81 @@
             android:textColor="@color/white"
             android:textSize="24dp"
             android:textStyle="bold" />
+
+        <TableLayout
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TableRow>
+                <TextView
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:background="@drawable/info_background"
+                    android:layout_weight="1"
+                    android:text="Môn học"
+                    android:textColor="@color/blue"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:background="@drawable/info_background"
+                    android:layout_weight="1"
+                    android:text="Chương trình"
+                    android:textColor="@color/blue"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:background="@drawable/info_background"
+                    android:layout_weight="1"
+                    android:text="Tài liệu"
+                    android:textColor="@color/blue"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:id="@+id/txtsubject"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:background="@drawable/info_background"
+                    android:layout_weight="1"
+                    android:text="30"
+                    android:textColor="@color/blue"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/txtProgram"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:background="@drawable/info_background"
+                    android:layout_weight="1"
+                    android:text="30"
+                    android:textColor="@color/blue"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/txtdoc"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:background="@drawable/info_background"
+                    android:layout_weight="1"
+                    android:text="30"
+                    android:textColor="@color/blue"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+            </TableRow>
+        </TableLayout>
 
         <GridLayout
             android:id="@+id/gridMenu"
@@ -78,9 +153,9 @@
                     android:id="@+id/btnManageSubjects"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    app:tint="@color/blue"
                     android:contentDescription="Môn học"
-                    android:src="@drawable/ic_book" />
+                    android:src="@drawable/ic_book"
+                    app:tint="@color/blue" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -108,9 +183,9 @@
                     android:id="@+id/btnManageUsers"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    app:tint="@color/blue"
                     android:contentDescription="Người dùng"
-                    android:src="@drawable/ic_user" />
+                    android:src="@drawable/ic_user"
+                    app:tint="@color/blue" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -138,9 +213,9 @@
                     android:id="@+id/btnManageDocuments"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    app:tint="@color/blue"
                     android:contentDescription="Tài liệu"
-                    android:src="@drawable/ic_file" />
+                    android:src="@drawable/ic_file"
+                    app:tint="@color/blue" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -153,5 +228,33 @@
             </LinearLayout>
 
         </GridLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_margin="20dp"
+            android:background="@drawable/info_background"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <ImageView
+                android:id="@+id/btnStatistics"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:contentDescription="Tài liệu"
+                android:src="@drawable/ic_chart"
+                app:tint="@color/blue" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Thống kê"
+                android:textColor="#1976D2"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

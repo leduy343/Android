@@ -3,7 +3,9 @@ package com.example.tlunavigator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,14 +22,16 @@ import com.google.firebase.database.ValueEventListener;
 
 public class UserDashboardActivity extends AppCompatActivity {
 
-    private ImageButton btnDocs,btnInfo,btnRetake,btnsubject,btnProgress,btnResult;
+    private ImageView btnDocs,btnInfo,btnRetake,btnsubject,btnProgress,btnResult;
     private TextView txtGPA;
+    private EditText edtSearch;
     DatabaseReference dataref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_dashboard);
 
+        edtSearch = findViewById(R.id.edtSearch);
         btnResult = findViewById(R.id.btnResult);
         btnDocs = findViewById(R.id.btnDocs);
         btnInfo = findViewById(R.id.btnInfo);
@@ -42,13 +46,13 @@ public class UserDashboardActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//        btnDocs.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(UserDashboardActivity.this, UserinfoActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        edtSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserDashboardActivity.this, SearchSubjectActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btnRetake.setOnClickListener(new View.OnClickListener() {
             @Override

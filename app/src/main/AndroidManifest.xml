@@ -18,6 +18,15 @@
         android:theme="@style/Theme.TluNavigator"
         tools:targetApi="31">
         <activity
+            android:name=".ViewDocumentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StatisticsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SearchSubjectActivity"
+            android:exported="false" />
+        <activity
             android:name=".GPAResultActivity"
             android:exported="false" />
         <activity
@@ -55,7 +64,7 @@
             android:exported="false" />
         <activity
             android:name=".ManageDocumentsActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".ManageSubjectsActivity"
             android:exported="false" />
@@ -65,13 +74,12 @@
         <activity
             android:name=".ManageUsersActivity"
             android:exported="false" />
-
         <activity
             android:name=".ForgotPasswordActivity"
             android:exported="false" />
         <activity
             android:name=".AdminMainActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
@@ -86,10 +94,10 @@
         </activity>
         <activity
             android:name=".UserAllDocumentsActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".UserDashboardActivity"
-            android:exported="false"/>
+            android:exported="false" />
     </application>
 
 </manifest>
